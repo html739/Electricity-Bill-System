@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+    <div class="bolt">⚡</div>
+    <p class="eyebrow">SMART UTILITY MANAGEMENT</p>
+    <h1>Electricity Bill Manager</h1>
+    <p>Manage customer records and generate electricity bills easily.</p>
+    <span id="serverStatus" class="status">Checking server...</span>
+</header>
+
+<main class="container">
+    <section class="card">
+        <h2>➕ Add New Customer</h2>
+        <form id="customerForm">
+            <div class="form-grid">
+                <label>
+                    Customer ID
+                    <input type="number" id="customerId" min="1" step="1" required>
+                </label>
+                <label>
+                    Customer Name
+                    <input type="text" id="customerName" maxlength="49" required
+                           pattern="[A-Za-z -]+"
+                           title="Use letters, spaces and hyphens">
+                </label>
+                <label class="full-width">
+                    Electricity Units Consumed
+                    <input type="number" id="units" min="0" max="1000000" step="1" required>
+                </label>
+            </div>
+            <button type="submit" class="primary">Generate Electricity Bill</button>
+            <button type="reset" class="secondary">Reset</button>
+        </form>
+        <p id="message" role="status"></p>
+    </section>
+
+    <section class="card bill-card">
+        <h2>🧾 Generated Bill</h2>
+        <div id="billResult" class="bill-result">
+            <p>Your generated bill will appear here.</p>
+        </div>
+        <button id="printButton" class="secondary" type="button" hidden>Print Bill</button>
+    </section>
+
+    <section class="card">
+        <div class="section-heading">
+            <div>
+                <h2>👥 Customer Records</h2>
+                <p>View saved customers, due dates, penalties and payment status.</p>
+            </div>
+            <button id="refreshButton" class="secondary" type="button">Refresh</button>
+        </div>
+
+        <div class="search-row">
+            <input type="number" id="searchId" min="1" step="1" placeholder="Enter customer ID">
+            <button id="searchButton" class="primary" type="button">Search Bill</button>
+        </div>
+        <div id="searchResult"></div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Units</th>
+                        <th>Bill (₹)</th>
+                        <th>Generated</th>
+                        <th>Due Date</th>
+                        <th>Penalty (₹)</th>
+                        <th>Total Payable (₹)</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="customerTable">
+                    <tr><td colspan="10">Loading records...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Electricity Bill Generation and Management System</p>
+    <p>Academic Mini Project • Developed using C</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
